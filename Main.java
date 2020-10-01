@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Vertex> V = new ArrayList<>();
+        /*
+        Test case from the slides.
         Vertex a = new Vertex("a");
         Vertex b = new Vertex("b");
         Vertex c = new Vertex("c");
@@ -37,6 +39,17 @@ public class Main {
 
         Graph G = new Graph(V);
         G.Prim(a);
-       // G.printMST();
+        G.printMST();
+
+         */
+        Generator gen = new Generator(5);
+        gen.createGraph(9,0,false);
+        //gen.printMatrix();
+        //gen.writeToFile("graph.in");
+        V = gen.readBuffer("graph.in");
+        //System.out.println(V.size());
+        Graph G = new Graph(V);
+        G.Prim(V.get(0));
+        G.printMST();
     }
 }

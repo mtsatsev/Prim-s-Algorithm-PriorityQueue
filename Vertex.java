@@ -2,7 +2,7 @@ package com.jetbrains;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.List;
 
 public class Vertex implements Comparable<Vertex> {
     String s;
@@ -14,28 +14,20 @@ public class Vertex implements Comparable<Vertex> {
         adjacency = new ArrayList<>();
     }
 
-    public void initAdj(Edge... p) {
-        this.adjacency.addAll(Arrays.asList(p));
+    public void initAdj(Edge... p) { this.adjacency.addAll(Arrays.asList(p));}
+    public void initAdjList(List<Edge> p ){
+        this.adjacency.addAll(p);
     }
+
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Vertex){
-             return ((Vertex) obj).getKey() == this.getKey();
+             return ((Vertex) obj).key == this.key && ((Vertex) obj).s == this.s;
         } else {
             return false;
         }
     }
-
-    /*Comparator<Vertex> ,
-    @Override
-    public int compare(Vertex o1, Vertex o2) {
-        if (o1.key < o2.key){
-            return o1.key;
-        }else {
-            return o2.key;
-        }
-    }*/
 
     public void setKey(Integer key) {
         this.key = key;
@@ -45,19 +37,16 @@ public class Vertex implements Comparable<Vertex> {
     public int compareTo(Vertex o) {
         if(this.equals(o)){
             return 0;
-        }else if(this.getKey() >= o.getKey()){
+        }else if(this.key >= o.key){
             return 1;
         }else {
             return -1;
         }
     }
 
-    public int getKey() {
-        return key;
-    }
-
     @Override
     public String toString() {
-        return "Vertex " + s;
+        return s;
     }
+
 }
